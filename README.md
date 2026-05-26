@@ -7,3 +7,4 @@
 To learn new innovated coding strategties 
 ## What I Want to Build
 I want to build a working code that my efforts will recongnize by other people!!
+## Andrea collaborator
