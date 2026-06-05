@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotics Experience | Nouh Eddamoussi</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --bg-color: #F7FAFC;
+        --text-color: #2D3748;
+        --card-bg: #FFFFFF;
+        --heading-main: #1A365D;
+        --heading-sub: #2B6CB0;
+        --border-color: #E2E8F0;
+        --btn-bg: #2B6CB0;
+        --btn-hover: #2C5282;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #1A202C;
+        --text-color: #E2E8F0;
+        --card-bg: #2D3748;
+        --heading-main: #EDF2F7;
+        --heading-sub: #63B3ED;
+        --border-color: #4A5568;
+        --btn-bg: #4299E1;
+        --btn-hover: #3182CE;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+      
+      body { 
+        font-family: 'Inter', sans-serif; 
+        color: var(--text-color);
+        background: var(--bg-color); 
+        max-width: 800px; 
+        margin: 0 auto; 
+        padding: 80px 20px 40px 20px;
+        line-height: 1.8;
+      }
+
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 24px;
+        background: var(--card-bg);
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        z-index: 1000;
+      }
+
+      .theme-toggle-btn, .home-btn {
+        background: var(--btn-bg);
+        color: #FFFFFF;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .theme-toggle-btn:hover, .home-btn:hover {
+        background: var(--btn-hover);
+      }
+
+      h1 { 
+        font-family: 'Poppins', sans-serif;
+        color: var(--heading-main); 
+        font-size: 2.2rem;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+
+      /* Fancy Story Container Box Styling */
+      .fancy-experience-box {
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 16px;
+        border-left: 6px solid var(--heading-sub);
+        box-shadow: var(--card-shadow);
+        margin-bottom: 32px;
+      }
+
+      .fancy-experience-box p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+      }
+
+      /* Styling for technical terms to make them look slick */
+      .highlight {
+        color: var(--heading-sub);
+        font-weight: 500;
+      }
+
+      .links-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .fancy-link {
+        color: var(--heading-sub);
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .fancy-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Top nav area mapping home redirection and theme styling -->
+    <div class="top-bar">
+      <a href="index.html" class="home-btn">🏠 Home</a>
+      <button class="theme-toggle-btn" id="theme-toggle">🌙 Dark Mode</button>
+    </div>
+
+    <h1>Robotics Experience</h1>
+
+    <!-- Fancy text layout for your seasonal summary info -->
+    <main class="fancy-experience-box">
+      <p>
+        I am part of the <span class="highlight">ETECH CHARGERS 5298</span> and was on the <span class="highlight">Mech Manipulator(mechanical work)</span> and mostly work on the loader part and the 2025-2026 season game was called <span class="highlight">rebuilt</span> where we had to make a robot that can intake fuel(Yellow balls) load fuel and shoot it through a shooter and the balls have to go into your teams hub(something to score in) and each team has 3 schools (Makes on alliance) and you go until playoffs, to learn more or see our team pictures click these links.
+      </p>
+
+      <!-- Secure targeted links opening options in separate layout panels -->
+      <div class="links-section">
+        <h3>Team Resources & Documentation:</h3>
+        <a class="fancy-link" href="https://firstinspires.org" target="_blank" rel="noopener">
+          🌐 Official FIRST Robotics Competition Site
+        </a>
+        <a class="fancy-link" href="https://goo.gl" target="_blank" rel="noopener">
+          📸 View Our Team Build Season Photo Album
+        </a>
+      </div>
+    </main>
+
+    <!-- JavaScript keeping light/dark mode choices in sync when moving pages -->
+    <script>
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggleBtn.innerHTML = '☀️ Light Mode';
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+          document.documentElement.removeAttribute('data-theme');
+          themeToggleBtn.innerHTML = '🌙 Dark Mode';
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          themeToggleBtn.innerHTML = '☀️ Light Mode';
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+    </script>
+  </body>
+</html>
