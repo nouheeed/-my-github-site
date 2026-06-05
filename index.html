@@ -3,32 +3,134 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Your Name]'s Website</title>
+    <title>Nouh Eddamoussi | Portfolio</title>
+    <!-- Importing modern, readable Google Fonts -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    
     <style>
-      body { font-family: Arial, sans-serif; max-width: 800px;
-             margin: 0 auto; padding: 20px; background: #f5f5f5; }
-      h1   { color: #1F4E79; }
-      h2   { color: #2E75B6; border-bottom: 2px solid #2E75B6; }
-      p    { line-height: 1.6; }
+      /* Modern CSS Reset and Base Styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body { 
+        font-family: 'Inter', sans-serif; 
+        color: #2D3748;
+        max-width: 900px; 
+        margin: 0 auto; 
+        padding: 40px 20px; 
+        background: #F7FAFC; 
+        line-height: 1.7;
+      }
+      
+      /* Typography & Headers */
+      h1, h2 {
+        font-family: 'Poppins', sans-serif;
+      }
+      h1 { 
+        color: #1A365D; 
+        font-size: 2.5rem;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+      h2 { 
+        color: #2B6CB0; 
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+      }
+
+      /* Hero/Intro Section Layout */
+      .hero {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #E2E8F0;
+      }
+      .subtitle {
+        font-size: 1.1rem;
+        color: #4A5568;
+      }
+      
+      /* Multi-Column Grid Layout for Organization */
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+        margin-bottom: 40px;
+      }
+
+      /* Card Elements */
+      .card {
+        background: #FFFFFF;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Call to Action Button & Links */
+      .btn-link {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 10px 20px;
+        background-color: #2B6CB0;
+        color: #FFFFFF;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: background-color 0.2s ease;
+      }
+      .btn-link:hover {
+        background-color: #2C5282;
+      }
     </style>
   </head>
   <body>
-    <h1>Hi, I'm Nouh Eddamoussi!</h1>
+
+    <!-- Main Header Area -->
+    <header class="hero">
+      <h1>Hi, I'm Nouh Eddamoussi!</h1>
+      <p class="subtitle">9th grader at Energy Tech High School</p>
+    </header>
  
-    <h2>About Me</h2>
-    <p>I'm in 9th grade at Energy Tech High School
-I enjoy: doing robotics and taking photos on a professional camera</p>
- 
-    <h2>My Interests</h2>
-    <p>To learn new innovated coding strategties</p>
- 
-    <h2>My Goals for This Course</h2>
-    <p>I want to build a working code that my efforts will recongnize by other people!!</p>
- 
-    <h2>My GitHub</h2>
-    <p>Check out my projects: 
-      <a href="https://github.com/nouheeed">Nouheeed</a>
-    </p>
+    <!-- Main Organized Grid -->
+    <main class="grid-container">
+      
+      <section class="card">
+        <h2>About Me</h2>
+        <p>I have a passion for building robotics and capturing the world through photography with my professional camera.</p>
+      </section>
+   
+      <section class="card">
+        <h2>My Interests</h2>
+        <p>I look forward to mastering new, innovative coding strategies and applying them to real-world applications.</p>
+      </section>
+   
+      <section class="card">
+        <h2>My Goals</h2>
+        <p>I want to build clean, functional software and create working code that is recognized and utilized by others in the community.</p>
+      </section>
+
+    </main>
+
+    <!-- Footer / External Links Grid -->
+    <section class="card" style="text-align: center; max-width: 400px; margin: 0 auto;">
+      <h2>Connect With Me</h2>
+      <p>Explore my open-source code and see what I am building.</p>
+      <a class="btn-link" href="https://github.com/nouheeed" target="_blank" rel="noopener">View My GitHub</a>
+    </section>
+
   </body>
 </html>
+
 
