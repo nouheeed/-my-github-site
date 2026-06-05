@@ -71,6 +71,13 @@
         z-index: 1000;
       }
 
+      /* Navigation Elements Container */
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
       /* Top Left NYC Clock Styling */
       .nyc-clock {
         font-size: 0.9rem;
@@ -225,7 +232,9 @@
 
     <!-- Fixed Utility Top Navigation Bar -->
     <div class="top-bar">
-      <div id="left-nav-container">
+      <div class="nav-left">
+        <!-- Always show Home button if we are away from homepage, otherwise it hides smoothly -->
+        <button class="home-btn" id="nav-home-btn" style="display: none;" onclick="showPage('main-page')">🏠 Home</button>
         <div class="nyc-clock" id="clock-display">🗽 NYC Time: Loading...</div>
       </div>
       <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">
@@ -291,8 +300,3 @@
           I am part of the <span class="highlight">ETECH CHARGERS 5298</span> and was on the <span class="highlight">Mech Manipulator(mechanical work)</span> and mostly work on the loader part and the 2025-2026 season game was called <span class="highlight">rebuilt</span> where we had to make a robot that can intake fuel(Yellow balls) load fuel and shoot it through a shooter and the balls have to go into your teams hub(something to score in) and each team has 3 schools (Makes on alliance) and you go until playoffs, to learn more or see our team pictures click these links.
         </p>
 
-        <div class="links-section">
-          <h3>Team Resources & Documentation:</h3>
-          <a class="fancy-link" href="https://firstinspires.org" target="_blank" rel="noopener">
-            🌐 Official FIRST Robotics Competition Site
-          </a>
