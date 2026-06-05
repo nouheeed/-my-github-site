@@ -10,34 +10,109 @@
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
+      /* CSS Variables for seamless Light and Dark mode switching */
+      :root {
+        --bg-color: #F7FAFC;
+        --text-color: #2D3748;
+        --card-bg: #FFFFFF;
+        --heading-main: #1A365D;
+        --heading-sub: #2B6CB0;
+        --border-color: #E2E8F0;
+        --btn-bg: #2B6CB0;
+        --btn-hover: #2C5282;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #1A202C;
+        --text-color: #E2E8F0;
+        --card-bg: #2D3748;
+        --heading-main: #EDF2F7;
+        --heading-sub: #63B3ED;
+        --border-color: #4A5568;
+        --btn-bg: #4299E1;
+        --btn-hover: #3182CE;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+        --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      }
+
       /* Modern CSS Reset and Base Styles */
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       }
+      
       body { 
         font-family: 'Inter', sans-serif; 
-        color: #2D3748;
+        color: var(--text-color);
+        background: var(--bg-color); 
         max-width: 900px; 
         margin: 0 auto; 
-        padding: 40px 20px; 
-        background: #F7FAFC; 
+        padding: 80px 20px 40px 20px; /* Top padding leaves room for the header elements */
         line-height: 1.7;
       }
       
+      /* Fixed Top Utility Bar Navigation */
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 24px;
+        background: var(--card-bg);
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+        z-index: 1000;
+      }
+
+      /* Top Left NYC Clock Styling */
+      .nyc-clock {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* Top Right Theme Toggle Button Styling */
+      .theme-toggle-btn {
+        background: var(--btn-bg);
+        color: #FFFFFF;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .theme-toggle-btn:hover {
+        background: var(--btn-hover);
+      }
+
       /* Typography & Headers */
       h1, h2 {
         font-family: 'Poppins', sans-serif;
       }
       h1 { 
-        color: #1A365D; 
+        color: var(--heading-main); 
         font-size: 2.5rem;
         margin-bottom: 8px;
         text-align: center;
       }
       h2 { 
-        color: #2B6CB0; 
+        color: var(--heading-sub); 
         font-size: 1.3rem;
         font-weight: 600;
         margin-bottom: 12px;
@@ -49,11 +124,12 @@
         text-align: center;
         margin-bottom: 40px;
         padding-bottom: 20px;
-        border-bottom: 1px solid #E2E8F0;
+        border-bottom: 1px solid var(--border-color);
       }
       .subtitle {
         font-size: 1.1rem;
-        color: #4A5568;
+        color: var(--text-color);
+        opacity: 0.85;
       }
       
       /* Multi-Column Grid Layout for Organization */
@@ -66,15 +142,14 @@
 
       /* Card Elements */
       .card {
-        background: #FFFFFF;
+        background: var(--card-bg);
         padding: 24px;
         border-radius: 12px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: var(--card-shadow);
       }
-      .card:hover {
+      .card.hoverable:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+        box-shadow: var(--card-hover-shadow);
       }
 
       /* Call to Action Button & Links */
@@ -82,20 +157,30 @@
         display: inline-block;
         margin-top: 8px;
         padding: 10px 20px;
-        background-color: #2B6CB0;
+        background-color: var(--btn-bg);
         color: #FFFFFF;
         text-decoration: none;
         border-radius: 6px;
         font-weight: 500;
         font-size: 0.95rem;
-        transition: background-color 0.2s ease;
       }
       .btn-link:hover {
-        background-color: #2C5282;
+        background-color: var(--btn-hover);
       }
     </style>
   </head>
   <body>
+
+    <!-- Fixed Utility Header containing Clock and Mode Switcher -->
+    <div class="top-bar">
+      <!-- NYC Clock Display Container -->
+      <div class="nyc-clock" id="clock-display">🗽 NYC Time: Loading...</div>
+      
+      <!-- Light / Dark Theme Button Toggle -->
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">
+        🌙 Dark Mode
+      </button>
+    </div>
 
     <!-- Main Header Area -->
     <header class="hero">
@@ -106,17 +191,17 @@
     <!-- Main Organized Grid -->
     <main class="grid-container">
       
-      <section class="card">
+      <section class="card hoverable">
         <h2>About Me</h2>
         <p>I have a passion for building robotics and capturing the world through photography with my professional camera.</p>
       </section>
    
-      <section class="card">
+      <section class="card hoverable">
         <h2>My Interests</h2>
         <p>I look forward to mastering new, innovative coding strategies and applying them to real-world applications.</p>
       </section>
    
-      <section class="card">
+      <section class="card hoverable">
         <h2>My Goals</h2>
         <p>I want to build clean, functional software and create working code that is recognized and utilized by others in the community.</p>
       </section>
@@ -126,11 +211,48 @@
     <!-- Footer / External Links Grid -->
     <section class="card" style="text-align: center; max-width: 400px; margin: 0 auto;">
       <h2>Connect With Me</h2>
-      <p>Explore my open-source code and see what I am building.</p>
-      <a class="btn-link" href="https://github.com/nouheeed" target="_blank" rel="noopener">View My GitHub</a>
+      <p style="margin-bottom: 12px;">Explore my open-source code and see what I am building.</p>
+      <a class="btn-link" href="https://github.com" target="_blank" rel="noopener">View My GitHub</a>
     </section>
 
+    <!-- JavaScript For Interactivity -->
+    <script>
+      // 1. NYC Live Clock Logic
+      function updateNYCTime() {
+        const options = {
+          timeZone: 'America/New_York',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        };
+        
+        // Formats the user's current clock exactly into New York City's current timezone string
+        const nycTimeString = new Date().toLocaleTimeString('en-US', options);
+        document.getElementById('clock-display').innerHTML = `🗽 NYC: ${nycTimeString}`;
+      }
+      
+      // Run the clock immediately and set it to refresh every single second
+      updateNYCTime();
+      setInterval(updateNYCTime, 1000);
+
+      // 2. Dark / Light Mode Toggle Logic
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      
+      themeToggleBtn.addEventListener('click', () => {
+        // Check current state directly from the HTML data-theme attribute
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        
+        if (currentTheme === 'dark') {
+          // Switch to Light Mode
+          document.documentElement.removeAttribute('data-theme');
+          themeToggleBtn.innerHTML = '🌙 Dark Mode';
+        } else {
+          // Switch to Dark Mode
+          document.documentElement.setAttribute('data-theme', 'dark');
+          themeToggleBtn.innerHTML = '☀️ Light Mode';
+        }
+      });
+    </script>
   </body>
 </html>
-
-
