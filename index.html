@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nouh Eddamoussi | Portfolio</title>
-    <!-- Importing modern, readable Google Fonts -->
+    <!-- Modern Google Fonts -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
-      /* CSS Variables for seamless Light and Dark mode switching */
+      /* Light and Dark Mode Color Variables */
       :root {
         --bg-color: #F7FAFC;
         --text-color: #2D3748;
@@ -20,7 +20,7 @@
         --border-color: #E2E8F0;
         --btn-bg: #2B6CB0;
         --btn-hover: #2C5282;
-        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
       }
 
@@ -33,16 +33,16 @@
         --border-color: #4A5568;
         --btn-bg: #4299E1;
         --btn-hover: #3182CE;
-        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
       }
 
-      /* Modern CSS Reset and Base Styles */
+      /* Base Design Reset */
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
       }
       
       body { 
@@ -51,11 +51,11 @@
         background: var(--bg-color); 
         max-width: 900px; 
         margin: 0 auto; 
-        padding: 80px 20px 40px 20px;
+        padding: 90px 20px 40px 20px;
         line-height: 1.7;
       }
       
-      /* Fixed Top Utility Bar Navigation */
+      /* Navigation Bar pinned to the top */
       .top-bar {
         position: fixed;
         top: 0;
@@ -71,24 +71,19 @@
         z-index: 1000;
       }
 
-      /* Navigation Elements Container */
       .nav-left {
         display: flex;
         align-items: center;
-        gap: 12px;
+        min-height: 35px;
       }
 
-      /* Top Left NYC Clock Styling */
       .nyc-clock {
         font-size: 0.9rem;
         font-weight: 500;
         color: var(--text-color);
-        display: flex;
-        align-items: center;
-        gap: 6px;
       }
 
-      /* Navigation Buttons */
+      /* Clean Rounded Buttons */
       .theme-toggle-btn, .home-btn {
         background: var(--btn-bg);
         color: #FFFFFF;
@@ -101,7 +96,6 @@
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         text-decoration: none;
       }
@@ -109,15 +103,15 @@
         background: var(--btn-hover);
       }
 
-      /* Page Visibility Control */
+      /* Single-Page Display Settings */
       .page-view {
-        display: none; /* Hidden by default */
+        display: none;
       }
       .page-view.active {
-        display: block; /* Shown when active */
+        display: block;
       }
 
-      /* Typography & Headers */
+      /* Fonts and Grid Containers */
       h1, h2, h3 {
         font-family: 'Poppins', sans-serif;
       }
@@ -132,23 +126,15 @@
         font-size: 1.3rem;
         font-weight: 600;
         margin-bottom: 12px;
-        letter-spacing: -0.02em;
       }
 
-      /* Hero/Intro Section Layout */
       .hero {
         text-align: center;
         margin-bottom: 40px;
         padding-bottom: 20px;
         border-bottom: 1px solid var(--border-color);
       }
-      .subtitle {
-        font-size: 1.1rem;
-        color: var(--text-color);
-        opacity: 0.85;
-      }
       
-      /* Multi-Column Grid Layout for Main Page */
       .grid-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -156,7 +142,6 @@
         margin-bottom: 40px;
       }
 
-      /* Card Elements */
       .card {
         background: var(--card-bg);
         padding: 24px;
@@ -168,7 +153,6 @@
         box-shadow: var(--card-hover-shadow);
       }
 
-      /* Button Links */
       .btn-link {
         display: inline-block;
         margin-top: 12px;
@@ -188,7 +172,7 @@
         background-color: var(--btn-hover);
       }
 
-      /* Robotics View Custom Styling */
+      /* Robotics Page Custom Look */
       .fancy-experience-box {
         background: var(--card-bg);
         padding: 40px;
@@ -219,9 +203,6 @@
         color: var(--heading-sub);
         text-decoration: none;
         font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
       }
       .fancy-link:hover {
         text-decoration: underline;
@@ -230,53 +211,48 @@
   </head>
   <body>
 
-    <!-- Fixed Utility Top Navigation Bar -->
+    <!-- Top Utility Bar Layout -->
     <div class="top-bar">
       <div class="nav-left">
-        <!-- Always show Home button if we are away from homepage, otherwise it hides smoothly -->
-        <button class="home-btn" id="nav-home-btn" style="display: none;" onclick="showPage('main-page')">🏠 Home</button>
+        <!-- Both elements are rendered safely; CSS classes will switch visibility -->
+        <button class="home-btn" id="nav-home-btn" style="display: none;" onclick="goToMainPage()">HTML 🏠 Home</button>
         <div class="nyc-clock" id="clock-display">🗽 NYC Time: Loading...</div>
       </div>
-      <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">
-        🌙 Dark Mode
-      </button>
+      <button class="theme-toggle-btn" id="theme-toggle-element">🌙 Dark Mode</button>
     </div>
 
     <!-- ==========================================================================
-       PAGE 1: MAIN PORTFOLIO VIEW 
+       PAGE 1: MAIN HOME LAYOUT
        ========================================================================== -->
-    <div id="main-page" class="page-view active">
+    <div id="main-page-view" class="page-view active">
       <header class="hero">
         <h1>Hi, I'm Nouh Eddamoussi!</h1>
-        <p class="subtitle">9th grader at Energy Tech High School</p>
+        <p style="font-size: 1.1rem; opacity: 0.85;">9th grader at Energy Tech High School</p>
       </header>
    
       <main class="grid-container">
-        <!-- Box 1 -->
         <section class="card hoverable">
           <h2>About Me</h2>
           <p>I have a passion for building robotics and capturing the world through photography with my professional camera.</p>
         </section>
      
-        <!-- Box 2 -->
         <section class="card hoverable">
           <h2>My Interests</h2>
           <p>I look forward to mastering new, innovative coding strategies and applying them to real-world applications.</p>
         </section>
      
-        <!-- Box 3 -->
         <section class="card hoverable">
           <h2>My Goals</h2>
           <p>I want to build clean, functional software and create working code that is recognized and utilized by others in the community.</p>
         </section>
 
-        <!-- Box 4: Robotics Access Point -->
+        <!-- Box 4: Robotics Section -->
         <section class="card hoverable" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div>
             <h2>Robotics 2025-2026</h2>
             <p style="font-size: 0.95rem; opacity: 0.85;">My experience of the E-TECH CHARGERS 5298</p>
           </div>
-          <button class="btn-link" onclick="showPage('robotics-page')">Learn More</button>
+          <button class="btn-link" onclick="goToRoboticsPage()">Learn More</button>
         </section>
       </main>
 
@@ -288,9 +264,9 @@
     </div>
 
     <!-- ==========================================================================
-       PAGE 2: DEDICATED ROBOTICS EXPANSION VIEW
+       PAGE 2: ROBOTICS EXPERIENCE VIEW
        ========================================================================== -->
-    <div id="robotics-page" class="page-view">
+    <div id="robotics-page-view" class="page-view">
       <header style="margin-top: 20px;">
         <h1 style="text-align: center;">Robotics Experience</h1>
       </header>
@@ -300,3 +276,21 @@
           I am part of the <span class="highlight">ETECH CHARGERS 5298</span> and was on the <span class="highlight">Mech Manipulator(mechanical work)</span> and mostly work on the loader part and the 2025-2026 season game was called <span class="highlight">rebuilt</span> where we had to make a robot that can intake fuel(Yellow balls) load fuel and shoot it through a shooter and the balls have to go into your teams hub(something to score in) and each team has 3 schools (Makes on alliance) and you go until playoffs, to learn more or see our team pictures click these links.
         </p>
 
+        <div class="links-section">
+          <h3>Team Resources & Documentation:</h3>
+          <a class="fancy-link" href="https://firstinspires.org" target="_blank" rel="noopener">
+            🌐 Official FIRST Robotics Competition Site
+          </a>
+          <a class="fancy-link" href="https://goo.gl" target="_blank" rel="noopener">
+            📸 View Our Team Build Season Photo Album
+          </a>
+        </div>
+      </main>
+    </div>
+
+    <!-- ==========================================================================
+       SECURE JAVASCRIPT LOGIC WORKSPACE
+       ========================================================================== -->
+    <script>
+      // Elements Lookup Configuration
+      const mainPage = document.getElementById('main-page-view');
