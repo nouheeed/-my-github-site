@@ -51,7 +51,7 @@
         background: var(--bg-color); 
         max-width: 900px; 
         margin: 0 auto; 
-        padding: 80px 20px 40px 20px; /* Top padding leaves room for the header elements */
+        padding: 80px 20px 40px 20px;
         line-height: 1.7;
       }
       
@@ -81,8 +81,8 @@
         gap: 6px;
       }
 
-      /* Top Right Theme Toggle Button Styling */
-      .theme-toggle-btn {
+      /* Navigation Buttons */
+      .theme-toggle-btn, .home-btn {
         background: var(--btn-bg);
         color: #FFFFFF;
         border: none;
@@ -92,17 +92,26 @@
         font-size: 0.85rem;
         font-weight: 500;
         cursor: pointer;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 6px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        text-decoration: none;
       }
-      .theme-toggle-btn:hover {
+      .theme-toggle-btn:hover, .home-btn:hover {
         background: var(--btn-hover);
       }
 
+      /* Page Visibility Control */
+      .page-view {
+        display: none; /* Hidden by default */
+      }
+      .page-view.active {
+        display: block; /* Shown when active */
+      }
+
       /* Typography & Headers */
-      h1, h2 {
+      h1, h2, h3 {
         font-family: 'Poppins', sans-serif;
       }
       h1 { 
@@ -132,7 +141,7 @@
         opacity: 0.85;
       }
       
-      /* Multi-Column Grid Layout for Organization */
+      /* Multi-Column Grid Layout for Main Page */
       .grid-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -152,10 +161,10 @@
         box-shadow: var(--card-hover-shadow);
       }
 
-      /* Call to Action Button & Links */
+      /* Button Links */
       .btn-link {
         display: inline-block;
-        margin-top: 8px;
+        margin-top: 12px;
         padding: 10px 20px;
         background-color: var(--btn-bg);
         color: #FFFFFF;
@@ -163,96 +172,132 @@
         border-radius: 6px;
         font-weight: 500;
         font-size: 0.95rem;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        font-family: 'Inter', sans-serif;
       }
       .btn-link:hover {
         background-color: var(--btn-hover);
+      }
+
+      /* ==========================================================================
+         Robotics View Custom Styling 
+         ========================================================================== */
+      .fancy-experience-box {
+        background: var(--card-bg);
+        padding: 40px;
+        border-radius: 16px;
+        border-left: 6px solid var(--heading-sub);
+        box-shadow: var(--card-shadow);
+        margin-top: 20px;
+        margin-bottom: 32px;
+        line-height: 1.8;
+      }
+      .fancy-experience-box p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+      }
+      .highlight {
+        color: var(--heading-sub);
+        font-weight: 500;
+      }
+      .links-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+      }
+      .fancy-link {
+        color: var(--heading-sub);
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .fancy-link:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
   <body>
 
-    <!-- Fixed Utility Header containing Clock and Mode Switcher -->
+    <!-- Fixed Utility Top Navigation Bar -->
     <div class="top-bar">
-      <!-- NYC Clock Display Container -->
-      <div class="nyc-clock" id="clock-display">🗽 NYC Time: Loading...</div>
+      <!-- Container 1: Left dynamic items (Clock / Home button) -->
+      <div id="left-nav-container">
+        <div class="nyc-clock" id="clock-display">🗽 NYC Time: Loading...</div>
+      </div>
       
-      <!-- Light / Dark Theme Button Toggle -->
+      <!-- Container 2: Right static items (Theme Toggle) -->
       <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark Mode">
         🌙 Dark Mode
       </button>
     </div>
 
-    <!-- Main Header Area -->
-    <header class="hero">
-      <h1>Hi, I'm Nouh Eddamoussi!</h1>
-      <p class="subtitle">9th grader at Energy Tech High School</p>
-    </header>
- 
-    <!-- Main Organized Grid -->
-    <main class="grid-container">
-      
-      <section class="card hoverable">
-        <h2>About Me</h2>
-        <p>I have a passion for building robotics and capturing the world through photography with my professional camera.</p>
-      </section>
+
+    <!-- ==========================================================================
+       PAGE 1: MAIN PORTFOLIO VIEW 
+       ========================================================================== -->
+    <div id="main-page" class="page-view active">
+      <header class="hero">
+        <h1>Hi, I'm Nouh Eddamoussi!</h1>
+        <p class="subtitle">9th grader at Energy Tech High School</p>
+      </header>
    
-      <section class="card hoverable">
-        <h2>My Interests</h2>
-        <p>I look forward to mastering new, innovative coding strategies and applying them to real-world applications.</p>
-      </section>
-   
-      <section class="card hoverable">
-        <h2>My Goals</h2>
-        <p>I want to build clean, functional software and create working code that is recognized and utilized by others in the community.</p>
-      </section>
+      <main class="grid-container">
+        <!-- Box 1 -->
+        <section class="card hoverable">
+          <h2>About Me</h2>
+          <p>I have a passion for building robotics and capturing the world through photography with my professional camera.</p>
+        </section>
+     
+        <!-- Box 2 -->
+        <section class="card hoverable">
+          <h2>My Interests</h2>
+          <p>I look forward to mastering new, innovative coding strategies and applying them to real-world applications.</p>
+        </section>
+     
+        <!-- Box 3 -->
+        <section class="card hoverable">
+          <h2>My Goals</h2>
+          <p>I want to build clean, functional software and create working code that is recognized and utilized by others in the community.</p>
+        </section>
 
-    </main>
+        <!-- Box 4: Robotics Access Point -->
+        <section class="card hoverable" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h2>Robotics 2025-2026</h2>
+            <p style="font-size: 0.95rem; opacity: 0.85;">My experience of the E-TECH CHARGERS 5298</p>
+          </div>
+          <!-- Triggers the switch view script -->
+          <button class="btn-link" onclick="showPage('robotics-page')">Learn More</button>
+        </section>
+      </main>
 
-    <!-- Footer / External Links Grid -->
-    <section class="card" style="text-align: center; max-width: 400px; margin: 0 auto;">
-      <h2>Connect With Me</h2>
-      <p style="margin-bottom: 12px;">Explore my open-source code and see what I am building.</p>
-      <a class="btn-link" href="https://github.com" target="_blank" rel="noopener">View My GitHub</a>
-    </section>
+      <footer class="card" style="text-align: center; max-width: 400px; margin: 0 auto;">
+        <h2>Connect With Me</h2>
+        <p style="margin-bottom: 12px;">Explore my open-source code and see what I am building.</p>
+        <a class="btn-link" href="https://github.com" target="_blank" rel="noopener">View My GitHub</a>
+      </footer>
+    </div>
 
-    <!-- JavaScript For Interactivity -->
-    <script>
-      // 1. NYC Live Clock Logic
-      function updateNYCTime() {
-        const options = {
-          timeZone: 'America/New_York',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true
-        };
-        
-        // Formats the user's current clock exactly into New York City's current timezone string
-        const nycTimeString = new Date().toLocaleTimeString('en-US', options);
-        document.getElementById('clock-display').innerHTML = `🗽 NYC: ${nycTimeString}`;
-      }
-      
-      // Run the clock immediately and set it to refresh every single second
-      updateNYCTime();
-      setInterval(updateNYCTime, 1000);
 
-      // 2. Dark / Light Mode Toggle Logic
-      const themeToggleBtn = document.getElementById('theme-toggle');
-      
-      themeToggleBtn.addEventListener('click', () => {
-        // Check current state directly from the HTML data-theme attribute
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        
-        if (currentTheme === 'dark') {
-          // Switch to Light Mode
-          document.documentElement.removeAttribute('data-theme');
-          themeToggleBtn.innerHTML = '🌙 Dark Mode';
-        } else {
-          // Switch to Dark Mode
-          document.documentElement.setAttribute('data-theme', 'dark');
-          themeToggleBtn.innerHTML = '☀️ Light Mode';
-        }
-      });
-    </script>
-  </body>
-</html>
+    <!-- ==========================================================================
+       PAGE 2: DEDICATED ROBOTICS EXPANSION VIEW
+       ========================================================================== -->
+    <div id="robotics-page" class="page-view">
+      <header style="margin-top: 20px;">
+        <h1 style="text-align: center;">Robotics Experience</h1>
+      </header>
+
+      <main class="fancy-experience-box">
+        <p>
+          I am part of the <span class="highlight">ETECH CHARGERS 5298</span> and was on the <span class="highlight">Mech Manipulator(mechanical work)</span> and mostly work on the loader part and the 2025-2026 season game was called <span class="highlight">rebuilt</span> where we had to make a robot that can intake fuel(Yellow balls) load fuel and shoot it through a shooter and the balls have to go into your teams hub(something to score in) and each team has 3 schools (Makes on alliance) and you go until playoffs, to learn more or see our team pictures click these links.
+        </p>
+
+
+
