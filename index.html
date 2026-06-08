@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nouh Eddamoussi | Portfolio</title>
     <!-- Modern Google Fonts -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
       /* Light and Dark Mode Color Variables */
@@ -84,7 +84,7 @@
       }
 
       /* Clean Rounded Buttons */
-      .theme-toggle-btn, .home-btn {
+      .theme-toggle-btn {
         background: var(--btn-bg);
         color: #FFFFFF;
         border: none;
@@ -99,16 +99,8 @@
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         text-decoration: none;
       }
-      .theme-toggle-btn:hover, .home-btn:hover {
+      .theme-toggle-btn:hover {
         background: var(--btn-hover);
-      }
-
-      /* Single-Page Display Settings */
-      .page-view {
-        display: none;
-      }
-      .page-view.active {
-        display: block;
       }
 
       /* Fonts and Grid Containers */
@@ -137,7 +129,7 @@
       
       .grid-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 24px;
         margin-bottom: 40px;
       }
@@ -171,42 +163,6 @@
       .btn-link:hover {
         background-color: var(--btn-hover);
       }
-
-      /* Robotics Page Custom Look */
-      .fancy-experience-box {
-        background: var(--card-bg);
-        padding: 40px;
-        border-radius: 16px;
-        border-left: 6px solid var(--heading-sub);
-        box-shadow: var(--card-shadow);
-        margin-top: 20px;
-        margin-bottom: 32px;
-        line-height: 1.8;
-      }
-      .fancy-experience-box p {
-        font-size: 1.1rem;
-        margin-bottom: 20px;
-      }
-      .highlight {
-        color: var(--heading-sub);
-        font-weight: 500;
-      }
-      .links-section {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 24px;
-        padding-top: 20px;
-        border-top: 1px solid var(--border-color);
-      }
-      .fancy-link {
-        color: var(--heading-sub);
-        text-decoration: none;
-        font-weight: 500;
-      }
-      .fancy-link:hover {
-        text-decoration: underline;
-      }
     </style>
   </head>
   <body>
@@ -214,17 +170,13 @@
     <!-- Top Utility Bar Layout -->
     <div class="top-bar">
       <div class="nav-left">
-        <!-- Both elements are rendered safely; CSS classes will switch visibility -->
-        <button class="home-btn" id="nav-home-btn" style="display: none;" onclick="goToMainPage()">HTML 🏠 Home</button>
         <div class="nyc-clock" id="clock-display">🗽 NYC Time: Loading...</div>
       </div>
       <button class="theme-toggle-btn" id="theme-toggle-element">🌙 Dark Mode</button>
     </div>
 
-    <!-- ==========================================================================
-       PAGE 1: MAIN HOME LAYOUT
-       ========================================================================== -->
-    <div id="main-page-view" class="page-view active">
+    <!-- MAIN HOME LAYOUT -->
+    <div id="main-page-view">
       <header class="hero">
         <h1>Hi, I'm Nouh Eddamoussi!</h1>
         <p style="font-size: 1.1rem; opacity: 0.85;">9th grader at Energy Tech High School</p>
@@ -233,7 +185,7 @@
       <main class="grid-container">
         <section class="card hoverable">
           <h2>About Me</h2>
-          <p>I have a passion for building robotics and capturing the world through photography with my professional camera.</p>
+          <p>I have a passion for technology, coding, and capturing the world through photography with my professional camera.</p>
         </section>
      
         <section class="card hoverable">
@@ -245,15 +197,6 @@
           <h2>My Goals</h2>
           <p>I want to build clean, functional software and create working code that is recognized and utilized by others in the community.</p>
         </section>
-
-        <!-- Box 4: Robotics Section -->
-        <section class="card hoverable" style="display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h2>Robotics 2025-2026</h2>
-            <p style="font-size: 0.95rem; opacity: 0.85;">My experience of the E-TECH CHARGERS 5298</p>
-          </div>
-          <button class="btn-link" onclick="goToRoboticsPage()">Learn More</button>
-        </section>
       </main>
 
       <footer class="card" style="text-align: center; max-width: 400px; margin: 0 auto;">
@@ -263,34 +206,39 @@
       </footer>
     </div>
 
-    <!-- ==========================================================================
-       PAGE 2: ROBOTICS EXPERIENCE VIEW
-       ========================================================================== -->
-    <div id="robotics-page-view" class="page-view">
-      <header style="margin-top: 20px;">
-        <h1 style="text-align: center;">Robotics Experience</h1>
-      </header>
-
-      <main class="fancy-experience-box">
-        <p>
-          I am part of the <span class="highlight">ETECH CHARGERS 5298</span> and was on the <span class="highlight">Mech Manipulator(mechanical work)</span> and mostly work on the loader part and the 2025-2026 season game was called <span class="highlight">rebuilt</span> where we had to make a robot that can intake fuel(Yellow balls) load fuel and shoot it through a shooter and the balls have to go into your teams hub(something to score in) and each team has 3 schools (Makes on alliance) and you go until playoffs, to learn more or see our team pictures click these links.
-        </p>
-
-        <div class="links-section">
-          <h3>Team Resources & Documentation:</h3>
-          <a class="fancy-link" href="https://firstinspires.org" target="_blank" rel="noopener">
-            🌐 Official FIRST Robotics Competition Site
-          </a>
-          <a class="fancy-link" href="https://goo.gl" target="_blank" rel="noopener">
-            📸 View Our Team Build Season Photo Album
-          </a>
-        </div>
-      </main>
-    </div>
-
-    <!-- ==========================================================================
-       SECURE JAVASCRIPT LOGIC WORKSPACE
-       ========================================================================== -->
+    <!-- Interactive Scripting Engine -->
     <script>
-      // Elements Lookup Configuration
-      const mainPage = document.getElementById('main-page-view');
+      // 1. Dark Mode / Light Mode Toggle Logic
+      const themeToggleBtn = document.getElementById('theme-toggle-element');
+      
+      themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+          document.documentElement.removeAttribute('data-theme');
+          themeToggleBtn.innerHTML = '🌙 Dark Mode';
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          themeToggleBtn.innerHTML = '☀️ Light Mode';
+        }
+      });
+
+      // 2. NYC Live Clock Logic
+      function updateNYCClock() {
+        const clockDisplay = document.getElementById('clock-display');
+        const options = {
+          timeZone: 'America/New_York',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        };
+        const formatter = new Intl.DateTimeFormat('en-US', options);
+        clockDisplay.innerHTML = `🗽 NYC Time: ${formatter.format(new Date())}`;
+      }
+      
+      // Run clock immediately and refresh every second
+      updateNYCClock();
+      setInterval(updateNYCClock, 1000);
+    </script>
+  </body>
+</html>
