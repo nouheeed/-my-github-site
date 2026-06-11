@@ -22,9 +22,6 @@
         --btn-hover: #2C5282;
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-        
-        /* Sparkle Glow accents for Light Mode */
-        --sparkle-glow: rgba(43, 108, 176, 0.4);
       }
 
       [data-theme="dark"] {
@@ -38,9 +35,6 @@
         --btn-hover: #3182CE;
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-        
-        /* Sparkle Glow accents for Dark Mode */
-        --sparkle-glow: rgba(99, 179, 237, 0.6);
       }
 
       /* Base Design Reset */
@@ -123,21 +117,25 @@
         opacity: 0;
       }
 
-      /* 1. LEFT TO RIGHT ANIMATION (Dark Mode Reveal) */
+      /* 🌈 LIGHT MODE ANIMATION: Left to Right Rainbow */
       .sparkle-left-to-right {
-        animation: stableRevealLeftToRight 1.5s ease-out forwards;
+        animation: rainbowRevealLeftToRight 1.6s ease-out forwards;
       }
       
-      @keyframes stableRevealLeftToRight {
+      @keyframes rainbowRevealLeftToRight {
         0% {
           opacity: 0;
           transform: scale(0.96) translateY(6px);
-          text-shadow: -15px 0 20px transparent;
+          text-shadow: -25px 0 10px transparent;
         }
         50% {
           opacity: 0.6;
-          /* Shimmer moves left to right */
-          text-shadow: -10px 0 15px var(--sparkle-glow), 0 0 10px rgba(255,215,0,0.2);
+          /* Sweeps rainbow colors from left to right */
+          text-shadow: 
+            -20px 0 12px rgba(255, 0, 128, 0.6),  /* Pink/Red */
+            -10px 0 12px rgba(255, 215, 0, 0.6),  /* Gold */
+            10px 0 12px rgba(0, 242, 255, 0.6),   /* Cyan */
+            20px 0 12px rgba(157, 0, 255, 0.5);   /* Purple */
         }
         100% {
           opacity: 1;
@@ -146,21 +144,25 @@
         }
       }
 
-      /* 2. RIGHT TO LEFT ANIMATION (Light Mode Reveal) */
+      /* 🌈 DARK MODE ANIMATION: Right to Left Rainbow */
       .sparkle-right-to-left {
-        animation: stableRevealRightToLeft 1.5s ease-out forwards;
+        animation: rainbowRevealRightToLeft 1.6s ease-out forwards;
       }
       
-      @keyframes stableRevealRightToLeft {
+      @keyframes rainbowRevealRightToLeft {
         0% {
           opacity: 0;
           transform: scale(0.96) translateY(6px);
-          text-shadow: 15px 0 20px transparent;
+          text-shadow: 25px 0 10px transparent;
         }
         50% {
           opacity: 0.6;
-          /* Shimmer moves right to left */
-          text-shadow: 10px 0 15px var(--sparkle-glow), 0 0 10px rgba(255,215,0,0.2);
+          /* Sweeps rainbow colors from right to left */
+          text-shadow: 
+            20px 0 12px rgba(157, 0, 255, 0.6),   /* Purple */
+            10px 0 12px rgba(0, 242, 255, 0.6),   /* Cyan */
+            -10px 0 12px rgba(255, 215, 0, 0.6),  /* Gold */
+            -20px 0 12px rgba(255, 0, 128, 0.5);  /* Pink/Red */
         }
         100% {
           opacity: 1;
@@ -234,7 +236,7 @@
     <!-- MAIN HOME LAYOUT -->
     <div id="main-page-view">
       <header class="hero">
-        <!-- Kept original sparkle-entry and added default load direction class -->
+        <!-- Starts with left-to-right rainbow sparkle by default in light mode -->
         <h1 id="name-heading" class="sparkle-entry sparkle-left-to-right">Hi, I'm Nouh Eddamoussi!</h1>
         <p style="font-size: 1.1rem; opacity: 0.85;">9th grader at Energy Tech High School</p>
       </header>
@@ -265,27 +267,27 @@
 
     <!-- Interactive Scripting Engine -->
     <script>
-      // 1. Dark Mode / Light Mode Toggle Logic + Sparkle Direction Engine
+      // 1. Dark Mode / Light Mode Toggle Logic + Rainbow Direction Controller
       const themeToggleBtn = document.getElementById('theme-toggle-element');
       const nameHeading = document.getElementById('name-heading');
       
       themeToggleBtn.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         
-        // Force the browser to reset the CSS animation timeline
+        // Remove animation classes to reset the CSS timeline completely
         nameHeading.classList.remove('sparkle-left-to-right', 'sparkle-right-to-left');
-        void nameHeading.offsetWidth; // Hidden trick to force reflow/reset in HTML
+        void nameHeading.offsetWidth; // Forces the DOM reflow to wipe previous styles instantly
         
         if (currentTheme === 'dark') {
-          // Switch to Light Mode: Trigger Right-to-Left sparkle
+          // Switch to Light Mode: Trigger Left-to-Right rainbow sparkle
           document.documentElement.removeAttribute('data-theme');
           themeToggleBtn.innerHTML = '🌙 Dark Mode';
-          nameHeading.classList.add('sparkle-right-to-left');
+          nameHeading.classList.add('sparkle-left-to-right');
         } else {
-          // Switch to Dark Mode: Trigger Left-to-Right sparkle
+          // Switch to Dark Mode: Trigger Right-to-Left rainbow sparkle
           document.documentElement.setAttribute('data-theme', 'dark');
           themeToggleBtn.innerHTML = '☀️ Light Mode';
-          nameHeading.classList.add('sparkle-left-to-right');
+          nameHeading.classList.add('sparkle-right-to-left');
         }
       });
 
@@ -304,8 +306,3 @@
       }
       
       // Run clock immediately and refresh every second
-      updateNYCClock();
-      setInterval(updateNYCClock, 1000);
-    </script>
-  </body>
-</html>
