@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nouh Eddamoussi | Portfolio</title>
     <!-- Modern Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
       /* Light and Dark Mode Color Variables */
@@ -23,10 +23,8 @@
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
         
-        /* Sparkle colors for Light Mode */
-        --sparkle-base: #1A365D;
-        --sparkle-shine-1: #FFD700;
-        --sparkle-shine-2: #00F2FF;
+        /* Sparkle Glow accents for Light Mode */
+        --sparkle-glow: rgba(43, 108, 176, 0.4);
       }
 
       [data-theme="dark"] {
@@ -41,10 +39,8 @@
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
         
-        /* Sparkle colors for Dark Mode */
-        --sparkle-base: #EDF2F7;
-        --sparkle-shine-1: #FFE600;
-        --sparkle-shine-2: #00FFFF;
+        /* Sparkle Glow accents for Dark Mode */
+        --sparkle-glow: rgba(99, 179, 237, 0.6);
       }
 
       /* Base Design Reset */
@@ -118,42 +114,58 @@
         font-family: 'Poppins', sans-serif;
       }
       
-      /* New Sparkle Animation Hook */
+      /* Master Base Sparkle Heading Styles */
       h1.sparkle-entry { 
+        color: var(--heading-main); 
         font-size: 2.5rem;
         margin-bottom: 8px;
         text-align: center;
-        
-        /* Setup text gradient clipping mask */
-        background: linear-gradient(
-          120deg, 
-          var(--sparkle-base) 35%, 
-          var(--sparkle-shine-1) 48%, 
-          #FFFFFF 50%, 
-          var(--sparkle-shine-2) 52%, 
-          var(--sparkle-base) 65%
-        );
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        
-        /* 1.8-second reveal animation */
-        animation: sparkleReveal 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        opacity: 0;
+      }
+
+      /* 1. LEFT TO RIGHT ANIMATION (Dark Mode Reveal) */
+      .sparkle-left-to-right {
+        animation: stableRevealLeftToRight 1.5s ease-out forwards;
       }
       
-      @keyframes sparkleReveal {
+      @keyframes stableRevealLeftToRight {
         0% {
           opacity: 0;
-          background-position: 120% 0;
-          transform: scale(0.97) translateY(5px);
+          transform: scale(0.96) translateY(6px);
+          text-shadow: -15px 0 20px transparent;
         }
-        25% {
-          opacity: 0.4;
+        50% {
+          opacity: 0.6;
+          /* Shimmer moves left to right */
+          text-shadow: -10px 0 15px var(--sparkle-glow), 0 0 10px rgba(255,215,0,0.2);
         }
         100% {
           opacity: 1;
-          background-position: -20% 0;
           transform: scale(1) translateY(0);
+          text-shadow: 0 0 0px transparent;
+        }
+      }
+
+      /* 2. RIGHT TO LEFT ANIMATION (Light Mode Reveal) */
+      .sparkle-right-to-left {
+        animation: stableRevealRightToLeft 1.5s ease-out forwards;
+      }
+      
+      @keyframes stableRevealRightToLeft {
+        0% {
+          opacity: 0;
+          transform: scale(0.96) translateY(6px);
+          text-shadow: 15px 0 20px transparent;
+        }
+        50% {
+          opacity: 0.6;
+          /* Shimmer moves right to left */
+          text-shadow: 10px 0 15px var(--sparkle-glow), 0 0 10px rgba(255,215,0,0.2);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+          text-shadow: 0 0 0px transparent;
         }
       }
 
@@ -222,8 +234,8 @@
     <!-- MAIN HOME LAYOUT -->
     <div id="main-page-view">
       <header class="hero">
-        <!-- Added the sparkle-entry class here -->
-        <h1 class="sparkle-entry">Hi, I'm Nouh Eddamoussi!</h1>
+        <!-- Kept original sparkle-entry and added default load direction class -->
+        <h1 id="name-heading" class="sparkle-entry sparkle-left-to-right">Hi, I'm Nouh Eddamoussi!</h1>
         <p style="font-size: 1.1rem; opacity: 0.85;">9th grader at Energy Tech High School</p>
       </header>
    
@@ -253,17 +265,27 @@
 
     <!-- Interactive Scripting Engine -->
     <script>
-      // 1. Dark Mode / Light Mode Toggle Logic
+      // 1. Dark Mode / Light Mode Toggle Logic + Sparkle Direction Engine
       const themeToggleBtn = document.getElementById('theme-toggle-element');
+      const nameHeading = document.getElementById('name-heading');
       
       themeToggleBtn.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
+        
+        // Force the browser to reset the CSS animation timeline
+        nameHeading.classList.remove('sparkle-left-to-right', 'sparkle-right-to-left');
+        void nameHeading.offsetWidth; // Hidden trick to force reflow/reset in HTML
+        
         if (currentTheme === 'dark') {
+          // Switch to Light Mode: Trigger Right-to-Left sparkle
           document.documentElement.removeAttribute('data-theme');
           themeToggleBtn.innerHTML = '🌙 Dark Mode';
+          nameHeading.classList.add('sparkle-right-to-left');
         } else {
+          // Switch to Dark Mode: Trigger Left-to-Right sparkle
           document.documentElement.setAttribute('data-theme', 'dark');
           themeToggleBtn.innerHTML = '☀️ Light Mode';
+          nameHeading.classList.add('sparkle-left-to-right');
         }
       });
 
@@ -287,4 +309,3 @@
     </script>
   </body>
 </html>
-
