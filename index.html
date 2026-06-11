@@ -22,9 +22,6 @@
         --btn-hover: #2C5282;
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-        
-        /* Sparkle Glow accents for Light Mode */
-        --sparkle-glow: rgba(43, 108, 176, 0.4);
       }
 
       [data-theme="dark"] {
@@ -38,9 +35,6 @@
         --btn-hover: #3182CE;
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-        
-        /* Sparkle Glow accents for Dark Mode */
-        --sparkle-glow: rgba(99, 179, 237, 0.6);
       }
 
       /* Base Design Reset */
@@ -123,21 +117,24 @@
         opacity: 0;
       }
 
-      /* 1. LEFT TO RIGHT ANIMATION (Dark Mode Reveal) */
+      /* 🌈 LIGHT MODE ANIMATION: Left to Right Rainbow */
       .sparkle-left-to-right {
-        animation: stableRevealLeftToRight 1.5s ease-out forwards;
+        animation: rainbowRevealLeftToRight 1.6s ease-out forwards;
       }
       
-      @keyframes stableRevealLeftToRight {
+      @keyframes rainbowRevealLeftToRight {
         0% {
           opacity: 0;
           transform: scale(0.96) translateY(6px);
-          text-shadow: -15px 0 20px transparent;
+          text-shadow: -25px 0 10px transparent;
         }
         50% {
           opacity: 0.6;
-          /* Shimmer moves left to right */
-          text-shadow: -10px 0 15px var(--sparkle-glow), 0 0 10px rgba(255,215,0,0.2);
+          text-shadow: 
+            -20px 0 12px rgba(255, 0, 128, 0.6),
+            -10px 0 12px rgba(255, 215, 0, 0.6),
+            10px 0 12px rgba(0, 242, 255, 0.6),
+            20px 0 12px rgba(157, 0, 255, 0.5);
         }
         100% {
           opacity: 1;
@@ -146,21 +143,24 @@
         }
       }
 
-      /* 2. RIGHT TO LEFT ANIMATION (Light Mode Reveal) */
+      /* 🌈 DARK MODE ANIMATION: Right to Left Rainbow */
       .sparkle-right-to-left {
-        animation: stableRevealRightToLeft 1.5s ease-out forwards;
+        animation: rainbowRevealRightToLeft 1.6s ease-out forwards;
       }
       
-      @keyframes stableRevealRightToLeft {
+      @keyframes rainbowRevealRightToLeft {
         0% {
           opacity: 0;
           transform: scale(0.96) translateY(6px);
-          text-shadow: 15px 0 20px transparent;
+          text-shadow: 25px 0 10px transparent;
         }
         50% {
           opacity: 0.6;
-          /* Shimmer moves right to left */
-          text-shadow: 10px 0 15px var(--sparkle-glow), 0 0 10px rgba(255,215,0,0.2);
+          text-shadow: 
+            20px 0 12px rgba(157, 0, 255, 0.6),
+            10px 0 12px rgba(0, 242, 255, 0.6),
+            -10px 0 12px rgba(255, 215, 0, 0.6),
+            -20px 0 12px rgba(255, 0, 128, 0.5);
         }
         100% {
           opacity: 1;
@@ -188,6 +188,14 @@
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 24px;
         margin-bottom: 40px;
+      }
+
+      /* 3x3 Footer Connect Grid Wrapper */
+      .footer-grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
       }
 
       .card {
@@ -234,7 +242,6 @@
     <!-- MAIN HOME LAYOUT -->
     <div id="main-page-view">
       <header class="hero">
-        <!-- Kept original sparkle-entry and added default load direction class -->
         <h1 id="name-heading" class="sparkle-entry sparkle-left-to-right">Hi, I'm Nouh Eddamoussi!</h1>
         <p style="font-size: 1.1rem; opacity: 0.85;">9th grader at Energy Tech High School</p>
       </header>
@@ -256,56 +263,42 @@
         </section>
       </main>
 
-      <footer class="card" style="text-align: center; max-width: 400px; margin: 0 auto;">
-        <h2>Connect With Me</h2>
-        <p style="margin-bottom: 12px;">Explore my open-source code and see what I am building.</p>
-        <a class="btn-link" href="https://github.com" target="_blank" rel="noopener">View My GitHub</a>
-      </footer>
+      <!-- Reconfigured 3x3 Connect Section Layout Grid -->
+      <div class="footer-grid-container">
+        <!-- Box 1: App Lab Project Link -->
+        <footer class="card" style="text-align: center;">
+          <h2>Connect With Me</h2>
+          <p style="margin-bottom: 12px;">Explore my open-source project and see what I am building.</p>
+          <a class="btn-link" href="https://studio.code.org/projects/applab/41392a48-ad17-45ab-846c-bb7f597f2f5f" target="_blank" rel="noopener">[Code.org App Lab Project](https://studio.code.org/projects/applab/41392a48-ad17-45ab-846c-bb7f597f2f5f)</a>
+        </footer>
+
+        <!-- Box 2: Robotics Team Link -->
+        <div class="card" style="text-align: center;">
+          <h2>Check out my team's website</h2>
+          <p style="margin-bottom: 12px;">Discover our custom builds, competition seasons, and STEM community outreach work.</p>
+          <a class="btn-link" href="https://www.etechchargers5298.org/" target="_blank" rel="noopener">[E-Tech Chargers 5298](https://www.etechchargers5298.org/)</a>
+        </div>
+
+        <!-- Box 3: DXF Converter Link -->
+        <div class="card" style="text-align: center;">
+          <h2>File Converter</h2>
+          <p style="margin-bottom: 12px;">If you ever need to convert a DXF into a SVG file check out the etech chargers converter.</p>
+          <a class="btn-link" href="https://etech-svg.streamlit.app/" target="_blank" rel="noopener">[DXF to SVG Converter](https://etech-svg.streamlit.app/)</a>
+        </div>
+      </div>
     </div>
 
     <!-- Interactive Scripting Engine -->
     <script>
-      // 1. Dark Mode / Light Mode Toggle Logic + Sparkle Direction Engine
+      // 1. Dark Mode / Light Mode Toggle Logic + Rainbow Direction Controller
       const themeToggleBtn = document.getElementById('theme-toggle-element');
       const nameHeading = document.getElementById('name-heading');
       
       themeToggleBtn.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         
-        // Force the browser to reset the CSS animation timeline
         nameHeading.classList.remove('sparkle-left-to-right', 'sparkle-right-to-left');
-        void nameHeading.offsetWidth; // Hidden trick to force reflow/reset in HTML
+        void nameHeading.offsetWidth; // Forces layout reflow to reset CSS timeline instantly
         
         if (currentTheme === 'dark') {
-          // Switch to Light Mode: Trigger Right-to-Left sparkle
           document.documentElement.removeAttribute('data-theme');
-          themeToggleBtn.innerHTML = '🌙 Dark Mode';
-          nameHeading.classList.add('sparkle-right-to-left');
-        } else {
-          // Switch to Dark Mode: Trigger Left-to-Right sparkle
-          document.documentElement.setAttribute('data-theme', 'dark');
-          themeToggleBtn.innerHTML = '☀️ Light Mode';
-          nameHeading.classList.add('sparkle-left-to-right');
-        }
-      });
-
-      // 2. NYC Live Clock Logic
-      function updateNYCClock() {
-        const clockDisplay = document.getElementById('clock-display');
-        const options = {
-          timeZone: 'America/New_York',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true
-        };
-        const formatter = new Intl.DateTimeFormat('en-US', options);
-        clockDisplay.innerHTML = `🗽 NYC Time: ${formatter.format(new Date())}`;
-      }
-      
-      // Run clock immediately and refresh every second
-      updateNYCClock();
-      setInterval(updateNYCClock, 1000);
-    </script>
-  </body>
-</html>
