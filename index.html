@@ -22,6 +22,11 @@
         --btn-hover: #2C5282;
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+        
+        /* Sparkle colors for Light Mode */
+        --sparkle-base: #1A365D;
+        --sparkle-shine-1: #FFD700;
+        --sparkle-shine-2: #00F2FF;
       }
 
       [data-theme="dark"] {
@@ -35,6 +40,11 @@
         --btn-hover: #3182CE;
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        
+        /* Sparkle colors for Dark Mode */
+        --sparkle-base: #EDF2F7;
+        --sparkle-shine-1: #FFE600;
+        --sparkle-shine-2: #00FFFF;
       }
 
       /* Base Design Reset */
@@ -107,12 +117,46 @@
       h1, h2, h3 {
         font-family: 'Poppins', sans-serif;
       }
-      h1 { 
-        color: var(--heading-main); 
+      
+      /* New Sparkle Animation Hook */
+      h1.sparkle-entry { 
         font-size: 2.5rem;
         margin-bottom: 8px;
         text-align: center;
+        
+        /* Setup text gradient clipping mask */
+        background: linear-gradient(
+          120deg, 
+          var(--sparkle-base) 35%, 
+          var(--sparkle-shine-1) 48%, 
+          #FFFFFF 50%, 
+          var(--sparkle-shine-2) 52%, 
+          var(--sparkle-base) 65%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+        /* 1.8-second reveal animation */
+        animation: sparkleReveal 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
       }
+      
+      @keyframes sparkleReveal {
+        0% {
+          opacity: 0;
+          background-position: 120% 0;
+          transform: scale(0.97) translateY(5px);
+        }
+        25% {
+          opacity: 0.4;
+        }
+        100% {
+          opacity: 1;
+          background-position: -20% 0;
+          transform: scale(1) translateY(0);
+        }
+      }
+
       h2 { 
         color: var(--heading-sub); 
         font-size: 1.3rem;
@@ -178,7 +222,8 @@
     <!-- MAIN HOME LAYOUT -->
     <div id="main-page-view">
       <header class="hero">
-        <h1>Hi, I'm Nouh Eddamoussi!</h1>
+        <!-- Added the sparkle-entry class here -->
+        <h1 class="sparkle-entry">Hi, I'm Nouh Eddamoussi!</h1>
         <p style="font-size: 1.1rem; opacity: 0.85;">9th grader at Energy Tech High School</p>
       </header>
    
@@ -242,3 +287,4 @@
     </script>
   </body>
 </html>
+
