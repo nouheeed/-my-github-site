@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nouh Eddamoussi | Portfolio</title>
     <!-- Modern Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
       /* Light and Dark Mode Color Variables */
@@ -207,6 +207,40 @@
       .btn-link:hover {
         background-color: var(--btn-hover);
       }
+
+      /* Floating Bottom-Left Audio Control Button */
+      .audio-control-container {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 1000;
+      }
+
+      .audio-btn {
+        background: var(--btn-bg);
+        color: #FFFFFF;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 30px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+
+      .audio-btn:hover {
+        background: var(--btn-hover);
+        transform: scale(1.05);
+      }
+
+      .audio-btn:active {
+        transform: scale(0.95);
+      }
     </style>
   </head>
   <body>
@@ -222,7 +256,6 @@
     <!-- MAIN HOME LAYOUT -->
     <div id="main-page-view">
       <header class="hero">
-        <!-- Added the sparkle-entry class here -->
         <h1 class="sparkle-entry">Hi, I'm Nouh Eddamoussi!</h1>
         <p style="font-size: 1.1rem; opacity: 0.85;">9th grader at Energy Tech High School</p>
       </header>
@@ -249,6 +282,17 @@
         <p style="margin-bottom: 12px;">Explore my open-source code and see what I am building.</p>
         <a class="btn-link" href="https://github.com" target="_blank" rel="noopener">View My GitHub</a>
       </footer>
+    </div>
+
+    <!-- Background Audio Element -->
+    <!-- Using a secure, looping royalty-free lofi jazz track -->
+    <audio id="bg-lofi-player" loop src="https://mixkit.co"></audio>
+
+    <!-- Bottom Left Mute Button Element -->
+    <div class="audio-control-container">
+      <button class="audio-btn" id="audio-toggle-element">
+        <span>📻</span> <span id="audio-status-text">Play Jazz Lofi</span>
+      </button>
     </div>
 
     <!-- Interactive Scripting Engine -->
@@ -281,10 +325,9 @@
         clockDisplay.innerHTML = `🗽 NYC Time: ${formatter.format(new Date())}`;
       }
       
-      // Run clock immediately and refresh every second
       updateNYCClock();
       setInterval(updateNYCClock, 1000);
-    </script>
-  </body>
-</html>
+
+      // 3. Audio Player & Mute Controller Engine
+
 
