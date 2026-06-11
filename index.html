@@ -266,24 +266,24 @@
       <!-- Reconfigured 3x3 Connect Section Layout Grid -->
       <div class="footer-grid-container">
         <!-- Box 1: App Lab Project Link -->
-        <footer class="card" style="text-align: center;">
+        <div class="card" style="text-align: center;">
           <h2>Connect With Me</h2>
           <p style="margin-bottom: 12px;">Explore my open-source project and see what I am building.</p>
-          <a class="btn-link" href="https://studio.code.org/projects/applab/41392a48-ad17-45ab-846c-bb7f597f2f5f" target="_blank" rel="noopener">[Code.org App Lab Project](https://studio.code.org/projects/applab/41392a48-ad17-45ab-846c-bb7f597f2f5f)</a>
-        </footer>
+          <a class="btn-link" href="https://code.org" target="_blank" rel="noopener">AP CSP APP</a>
+        </div>
 
         <!-- Box 2: Robotics Team Link -->
         <div class="card" style="text-align: center;">
           <h2>Check out my team's website</h2>
           <p style="margin-bottom: 12px;">Discover our custom builds, competition seasons, and STEM community outreach work.</p>
-          <a class="btn-link" href="https://www.etechchargers5298.org/" target="_blank" rel="noopener">[E-Tech Chargers 5298](https://www.etechchargers5298.org/)</a>
+          <a class="btn-link" href="https://www.etechchargers5298.org/" target="_blank" rel="noopener">Store</a>
         </div>
 
         <!-- Box 3: DXF Converter Link -->
         <div class="card" style="text-align: center;">
           <h2>File Converter</h2>
           <p style="margin-bottom: 12px;">If you ever need to convert a DXF into a SVG file check out the etech chargers converter.</p>
-          <a class="btn-link" href="https://etech-svg.streamlit.app/" target="_blank" rel="noopener">[DXF to SVG Converter](https://etech-svg.streamlit.app/)</a>
+          <a class="btn-link" href="https://streamlit.app" target="_blank" rel="noopener">Convert</a>
         </div>
       </div>
     </div>
@@ -298,7 +298,11 @@
         const currentTheme = document.documentElement.getAttribute('data-theme');
         
         nameHeading.classList.remove('sparkle-left-to-right', 'sparkle-right-to-left');
-        void nameHeading.offsetWidth; // Forces layout reflow to reset CSS timeline instantly
+        void nameHeading.offsetWidth; // Forces the DOM reflow to reset CSS timeline instantly
         
         if (currentTheme === 'dark') {
           document.documentElement.removeAttribute('data-theme');
+          themeToggleBtn.innerHTML = '🌙 Dark Mode';
+          nameHeading.classList.add('sparkle-left-to-right');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
