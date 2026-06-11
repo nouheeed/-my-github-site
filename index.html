@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nouh Eddamoussi | Portfolio</title>
     <!-- Modern Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
       /* Light and Dark Mode Color Variables */
@@ -23,10 +23,8 @@
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
         
-        /* Sparkle colors for Light Mode */
-        --sparkle-base: #1A365D;
-        --sparkle-shine-1: #FFD700;
-        --sparkle-shine-2: #00F2FF;
+        /* Sparkle Glow accents for Light Mode */
+        --sparkle-glow: rgba(43, 108, 176, 0.4);
       }
 
       [data-theme="dark"] {
@@ -41,10 +39,8 @@
         --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
         
-        /* Sparkle colors for Dark Mode */
-        --sparkle-base: #EDF2F7;
-        --sparkle-shine-1: #FFE600;
-        --sparkle-shine-2: #00FFFF;
+        /* Sparkle Glow accents for Dark Mode */
+        --sparkle-glow: rgba(99, 179, 237, 0.6);
       }
 
       /* Base Design Reset */
@@ -118,42 +114,30 @@
         font-family: 'Poppins', sans-serif;
       }
       
-      /* New Sparkle Animation Hook */
+      /* Pure CSS Sparkle Entry Config */
       h1.sparkle-entry { 
+        color: var(--heading-main); 
         font-size: 2.5rem;
         margin-bottom: 8px;
         text-align: center;
-        
-        /* Setup text gradient clipping mask */
-        background: linear-gradient(
-          120deg, 
-          var(--sparkle-base) 35%, 
-          var(--sparkle-shine-1) 48%, 
-          #FFFFFF 50%, 
-          var(--sparkle-shine-2) 52%, 
-          var(--sparkle-base) 65%
-        );
-        background-size: 200% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        
-        /* 1.8-second reveal animation */
-        animation: sparkleReveal 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        opacity: 0;
+        animation: stableRevealEffect 1.5s ease-out forwards;
       }
       
-      @keyframes sparkleReveal {
+      @keyframes stableRevealEffect {
         0% {
           opacity: 0;
-          background-position: 120% 0;
-          transform: scale(0.97) translateY(5px);
+          transform: scale(0.96) translateY(6px);
+          text-shadow: 0 0 0px transparent;
         }
-        25% {
-          opacity: 0.4;
+        50% {
+          opacity: 0.6;
+          text-shadow: 0 0 15px var(--sparkle-glow), -5px -2px 4px rgba(255,215,0,0.3);
         }
         100% {
           opacity: 1;
-          background-position: -20% 0;
           transform: scale(1) translateY(0);
+          text-shadow: 0 0 0px transparent;
         }
       }
 
@@ -207,6 +191,98 @@
       .btn-link:hover {
         background-color: var(--btn-hover);
       }
+
+      /* --- NEW FLAPPY GAME STYLES --- */
+      .game-launcher-wrap {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 2000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .launch-game-btn {
+        background: #FF5722;
+        color: #FFFFFF;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 25px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      /* Button grows slightly on interaction */
+      .launch-game-btn:hover {
+        transform: scale(1.1);
+        background: #E64A19;
+      }
+      .launch-game-btn:active {
+        transform: scale(0.95);
+      }
+
+      .game-modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 3000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .game-box {
+        background: #70C5CE;
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        position: relative;
+        text-align: center;
+      }
+
+      .close-game-btn {
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        background: #333;
+        color: #fff;
+        border: 2px solid #fff;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #flappy-canvas {
+        background: #70C5CE;
+        display: block;
+        border-radius: 8px;
+        border: 4px solid #fff;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .game-instructions {
+        color: #FFF;
+        font-size: 0.85rem;
+        margin-top: 8px;
+        font-family: 'Inter', sans-serif;
+      }
     </style>
   </head>
   <body>
@@ -222,7 +298,6 @@
     <!-- MAIN HOME LAYOUT -->
     <div id="main-page-view">
       <header class="hero">
-        <!-- Added the sparkle-entry class here -->
         <h1 class="sparkle-entry">Hi, I'm Nouh Eddamoussi!</h1>
         <p style="font-size: 1.1rem; opacity: 0.85;">9th grader at Energy Tech High School</p>
       </header>
@@ -251,40 +326,24 @@
       </footer>
     </div>
 
+    <!-- Bottom Left Game Trigger Container -->
+    <div class="game-launcher-wrap">
+      <button class="launch-game-btn" id="open-game-trigger">
+        <span>🎮</span> Play Flappy Bird
+      </button>
+    </div>
+
+    <!-- Hidden Game Screen Modal -->
+    <div class="game-modal-overlay" id="game-overlay-element">
+      <div class="game-box">
+        <button class="close-game-btn" id="close-game-trigger">✕</button>
+        <canvas id="flappy-canvas" width="320" height="480"></canvas>
+        <div class="game-instructions">Tap <b>SPACEBAR</b> or <b>CLICK CANVAS</b> to Fly</div>
+      </div>
+    </div>
+
     <!-- Interactive Scripting Engine -->
     <script>
       // 1. Dark Mode / Light Mode Toggle Logic
       const themeToggleBtn = document.getElementById('theme-toggle-element');
       
-      themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-          document.documentElement.removeAttribute('data-theme');
-          themeToggleBtn.innerHTML = '🌙 Dark Mode';
-        } else {
-          document.documentElement.setAttribute('data-theme', 'dark');
-          themeToggleBtn.innerHTML = '☀️ Light Mode';
-        }
-      });
-
-      // 2. NYC Live Clock Logic
-      function updateNYCClock() {
-        const clockDisplay = document.getElementById('clock-display');
-        const options = {
-          timeZone: 'America/New_York',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true
-        };
-        const formatter = new Intl.DateTimeFormat('en-US', options);
-        clockDisplay.innerHTML = `🗽 NYC Time: ${formatter.format(new Date())}`;
-      }
-      
-      // Run clock immediately and refresh every second
-      updateNYCClock();
-      setInterval(updateNYCClock, 1000);
-    </script>
-  </body>
-</html>
-
