@@ -1,125 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nouh Eddamoussi | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://googleapis.com"><link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --bg-color: #F7FAFC; --text-color: #2D3748; --card-bg: #FFFFFF;
-        --heading-main: #1A365D; --heading-sub: #2B6CB0; --border-color: #E2E8F0;
-        --btn-bg: #2B6CB0; --btn-hover: #2C5282; --dropdown-bg: #4A5568; --dropdown-hover: #2D3748;
-        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-        --dir: -1; /* -1 for Left-to-Right layout */
-      }
-      [data-theme="dark"] {
-        --bg-color: #1A202C; --text-color: #E2E8F0; --card-bg: #2D3748;
-        --heading-main: #EDF2F7; --heading-sub: #63B3ED; --border-color: #4A5568;
-        --btn-bg: #4299E1; --btn-hover: #3182CE; --dropdown-hover: #718096;
-        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-        --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-        --dir: 1; /* 1 for Right-to-Left layout */
-      }
-      * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
-      body { font-family: 'Inter', sans-serif; color: var(--text-color); background: var(--bg-color); max-width: 900px; margin: 0 auto; padding: 90px 20px 40px; line-height: 1.7; }
+      :root { --bg-color: #F7FAFC; --text-color: #2D3748; --card-bg: #FFFFFF; --heading-main: #1A365D; --heading-sub: #2B6CB0; --border-color: #E2E8F0; --btn-bg: #2B6CB0; --btn-hover: #2C5282; --dropdown-bg: #4A5568; --dropdown-hover: #2D3748; --card-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); --card-hover-shadow: 0 10px 15px -3px rgba(0,0,0,0.08); --dir: -1; }
+      [data-theme="dark"] { --bg-color: #1A202C; --text-color: #E2E8F0; --card-bg: #2D3748; --heading-main: #EDF2F7; --heading-sub: #63B3ED; --border-color: #4A5568; --btn-bg: #4299E1; --btn-hover: #3182CE; --dropdown-hover: #718096; --card-shadow: 0 4px 6px -1px rgba(0,0,0,0.2); --card-hover-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); --dir: 1; }
+      * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.2s, color 0.2s, border-color 0.2s; font-family: 'Inter', sans-serif; }
+      body { color: var(--text-color); background: var(--bg-color); max-width: 900px; margin: 0 auto; padding: 90px 20px 40px; line-height: 1.7; }
       h1, h2, h3 { font-family: 'Poppins', sans-serif; }
-      
       .top-bar { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: var(--card-bg); border-bottom: 1px solid var(--border-color); box-shadow: var(--card-shadow); z-index: 1000; }
       .theme-toggle-btn { background: var(--btn-bg); color: #FFF; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; cursor: pointer; }
       .theme-toggle-btn:hover { background: var(--btn-hover); }
-      
       h1.sparkle-entry { color: var(--heading-main); font-size: 2.5rem; margin-bottom: 8px; text-align: center; opacity: 0; }
       .animate-sparkle { animation: rainbowReveal 1.6s ease-out forwards; }
-      
       @keyframes rainbowReveal {
         0% { opacity: 0; transform: scale(0.96) translateY(6px); text-shadow: calc(var(--dir) * 25px) 0 10px transparent; }
         50% { opacity: 0.6; text-shadow: calc(var(--dir) * 20px) 0 12px rgba(255,0,128,0.6), calc(var(--dir) * 10px) 0 12px rgba(255,215,0,0.6), calc(var(--dir) * -10px) 0 12px rgba(0,242,255,0.6), calc(var(--dir) * -20px) 0 12px rgba(157,0,255,0.5); }
         100% { opacity: 1; transform: scale(1) translateY(0); text-shadow: 0 0 0px transparent; }
       }
-
       h2 { color: var(--heading-sub); font-size: 1.3rem; font-weight: 600; margin-bottom: 12px; }
       .hero { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
       .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 40px; }
       .card { background: var(--card-bg); padding: 24px; border-radius: 12px; box-shadow: var(--card-shadow); }
       .card.hoverable:hover { transform: translateY(-2px); box-shadow: var(--card-hover-shadow); }
-
-      /* Dropdown UI */
       .dropdown-wrapper { margin: 40px auto 0; text-align: center; width: 100%; }
       .dropdown-toggle-btn { background: var(--dropdown-bg); color: #FFF; border: none; padding: 12px 28px; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; }
       .dropdown-toggle-btn:hover { background: var(--dropdown-hover); }
       .dropdown-icon { display: inline-block; transition: transform 0.25s; }
       .dropdown-wrapper.active .dropdown-icon { transform: rotate(180deg); }
-      .dropdown-menu-content { max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-10px); transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s, transform 0.3s; display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 16px; }
+      .dropdown-menu-content { max-height: 0; overflow: hidden; opacity: 0; transform: translateY(-10px); transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s, transform 0.3s; display: flex; flex-direction: column; gap: 12px; align-items: center; margin-top: 16px; }
       .dropdown-wrapper.active .dropdown-menu-content { max-height: 300px; opacity: 1; transform: translateY(0); }
       .dropdown-item-btn { width: 100%; max-width: 320px; padding: 12px; background: var(--btn-bg); color: #FFF; text-decoration: none; border-radius: 6px; font-size: 0.95rem; font-weight: 500; transition: background-color 0.2s, transform 0.15s; }
       .dropdown-item-btn:hover { background: var(--btn-hover); transform: translateX(4px); }
     </style>
   </head>
   <body>
-
     <div class="top-bar">
       <div class="nav-left"><div class="nyc-clock" id="clock-display">🗽 NYC Time: Loading...</div></div>
       <button class="theme-toggle-btn" id="theme-toggle-element">🌙 Dark Mode</button>
     </div>
-
     <div id="main-page-view">
       <header class="hero">
         <h1 id="name-heading" class="sparkle-entry animate-sparkle">Hi, I'm Nouh Eddamoussi!</h1>
         <p style="font-size: 1.1rem; opacity: 0.85;">9th grader at Energy Tech High School</p>
       </header>
-   
       <main class="grid-container">
         <section class="card hoverable"><h2>About Me</h2><p>I have a passion for technology, coding, and capturing the world through photography with my professional camera.</p></section>
         <section class="card hoverable"><h2>My Interests</h2><p>I look forward to mastering new, innovative coding strategies and applying them to real-world applications.</p></section>
         <section class="card hoverable"><h2>My Goals</h2><p>I want to build clean, functional software and create working code that is recognized and utilized by others in the community.</p></section>
       </main>
-
       <footer class="card" style="text-align: center; max-width: 460px; margin: 0 auto;">
-        <h2>Connect With Me</h2>
-        <p style="margin-bottom: 12px; opacity: 0.85;">Explore some of me and my teams stuff!</p>
+        <h2>Connect With Me</h2><p style="margin-bottom: 12px; opacity: 0.85;">Explore some of me and my teams stuff!</p>
         <div class="dropdown-wrapper" id="custom-links-dropdown">
           <button class="dropdown-toggle-btn" id="dropdown-trigger-btn"><span>Explore Links</span><span class="dropdown-icon">▼</span></button>
           <div class="dropdown-menu-content">
             <a class="dropdown-item-btn" href="https://code.org" target="_blank" rel="noopener">AP CSP APP</a>
-            <a class="dropdown-item-btn" href="https://etechchargers5298.org" target="_blank" rel="noopener">Store</a>
-            <a class="dropdown-item-btn" href="https://etech-svg.streamlit.app/" target="_blank" rel="noopener">Convert</a>
+            <!-- Updated the old streamlit link directly to your team's website link below -->
+            <a class="dropdown-item-btn" href="https://www.etechchargers5298.org/" target="_blank" rel="noopener">Store</a>
+            <a class="dropdown-item-btn" href="https://www.etechchargers5298.org/" target="_blank" rel="noopener">Convert</a>
           </div>
         </div>
       </footer>
     </div>
-
     <script>
-      const themeBtn = document.getElementById('theme-toggle-element');
-      const nameHeading = document.getElementById('name-heading');
-      const dropdown = document.getElementById('custom-links-dropdown');
-
-      // Theme toggle, animation switch, and text loader
+      const themeBtn = document.getElementById('theme-toggle-element'), nameHeading = document.getElementById('name-heading'), dropdown = document.getElementById('custom-links-dropdown');
+      
       themeBtn.addEventListener('click', () => {
-        const isDark = document.documentElement.toggleAttribute('data-theme');
-        themeBtn.innerHTML = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
-        
-        nameHeading.classList.remove('animate-sparkle');
-        void nameHeading.offsetWidth; // Force Reflow
-        nameHeading.classList.add('animate-sparkle');
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        isDark ? document.documentElement.removeAttribute('data-theme') : document.documentElement.setAttribute('data-theme', 'dark');
+        themeBtn.innerHTML = isDark ? '🌙 Dark Mode' : '☀️ Light Mode';
+        nameHeading.classList.remove('animate-sparkle'); void nameHeading.offsetWidth; nameHeading.classList.add('animate-sparkle');
       });
 
-      // NYC Clock Engine
       const updateClock = () => {
-        const timeStr = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).format(new Date());
-        document.getElementById('clock-display').innerHTML = `🗽 NYC Time: ${timeStr}`;
+        document.getElementById('clock-display').innerHTML = `🗽 NYC Time: ${new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).format(new Date())}`;
       };
       updateClock(); setInterval(updateClock, 1000);
 
-      // Dropdown Control Engine
       document.getElementById('dropdown-trigger-btn').addEventListener('click', (e) => { dropdown.classList.toggle('active'); e.stopPropagation(); });
       document.addEventListener('click', () => dropdown.classList.remove('active'));
     </script>
   </body>
 </html>
-
-      <!-- 🔽 RECONSTRUCTED CONNECT INTERACTIVE DROP-DOWN CONTAINER 🔽 -->
