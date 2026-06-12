@@ -110,7 +110,7 @@
       });
 
       const updateClock = () => {
-        document.getElementById('clock-display').innerHTML = `🚀 SYS TIME: ${new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).format(new Date())}`;
+        document.getElementById('clock-display').innerHTML = `🚀 NYC TIME: ${new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).format(new Date())}`;
       };
       updateClock(); setInterval(updateClock, 1000);
 
