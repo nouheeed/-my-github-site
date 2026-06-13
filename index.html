@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://googleapis.com"><link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
     <style>
-      /* ⚡ CORE BRIGHT VS DARK THEME VARIABLE MATRIX */
+      /* ⚡ CORE THEME MATRIX VARIABLES */
       :root { 
         --bg: #F4F7FC; --txt: #090F1C; --card: rgba(255, 255, 255, 0.85); --main: #ff002b; --sub: #b3001b; --blue: #0055ff;
         --border: 3px solid var(--main); --shadow: 0 8px 24px rgba(255, 0, 43, 0.12); --dir: -1; --op: 0.3;
@@ -62,6 +62,11 @@
       
       .dropdown-item-btn { width: 100%; max-width: 320px; padding: 14px; background: var(--main); color: #FFF; text-decoration: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; text-transform: uppercase; border: 2px solid #FFF; text-align: center; }
       .dropdown-item-btn:hover { background: var(--txt); color: var(--bg); transform: translateX(6px); }
+
+      /* 📻 FLOATING BOTTOM-LEFT AUDIO OVERLAY LAYOUT */
+      .audio-wrap { position: fixed; bottom: 20px; left: 20px; z-index: 1000; }
+      .audio-btn { background: var(--main); color: #FFF; border: 2px solid #FFF; padding: 10px 18px; border-radius: 30px; font-weight: bold; font-size: 0.8rem; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow); }
+      .audio-btn:hover { transform: scale(1.05); background: var(--txt); color: var(--bg); }
     </style>
   </head>
   <body>
@@ -98,9 +103,13 @@
       </footer>
     </div>
 
+    <!-- Background Streaming Audio + Controller -->
+    <audio id="bg-jazz-stream" loop src="https://mixkit.co"></audio>
+    <div class="audio-wrap"><button class="audio-btn" id="audio-toggle-element">📻 PLAY JAZZ</button></div>
+
     <!-- Core Scripting Engine Handles -->
     <script>
-      const themeBtn = document.getElementById('theme-toggle-element'), nameHeading = document.getElementById('name-heading'), dropdown = document.getElementById('custom-links-dropdown');
+      const themeBtn = document.getElementById('theme-toggle-element'), nameHeading = document.getElementById('name-heading'), dropdown = document.getElementById('custom-links-dropdown'), jazzPlayer = document.getElementById('bg-jazz-stream'), audioBtn = document.getElementById('audio-toggle-element');
       
       themeBtn.addEventListener('click', () => {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -110,12 +119,8 @@
       });
 
       const updateClock = () => {
-        document.getElementById('clock-display').innerHTML = `🚀 NYC TIME: ${new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).format(new Date())}`;
+        document.getElementById('clock-display').innerHTML = `🚀 SYS TIME: ${new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).format(new Date())}`;
       };
       updateClock(); setInterval(updateClock, 1000);
 
       document.getElementById('dropdown-trigger-btn').addEventListener('click', (e) => { dropdown.classList.toggle('active'); e.stopPropagation(); });
-      document.addEventListener('click', () => dropdown.classList.remove('active'));
-    </script>
-  </body>
-</html>
